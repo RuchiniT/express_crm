@@ -1,8 +1,18 @@
 import express from 'express';
-import routes from 'routes/crmRoutes';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import routes from './src/routes/crmRoutes.js';
 
 const app = express();
 const PORT = 3000;
+
+// mongoose connection
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb+srv://kd2020rt:YIduvPqtjdNiQIcD@cluster0.99ath.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+
+// bodyparser setup
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
 
 routes(app);
 
